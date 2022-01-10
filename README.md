@@ -81,3 +81,7 @@ on his/her choice.
 4. JUnit
 5. Hamcrest
 6. Git
+
+**BONUS**
+
+1) Unit tests(JUnit) added.
