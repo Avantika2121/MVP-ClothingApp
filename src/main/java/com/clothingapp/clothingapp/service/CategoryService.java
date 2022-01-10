@@ -112,20 +112,21 @@ public class CategoryService {
         }
     }
 
+    //Getting an item with item and category id
     public Item getCategoryItem(Long categoryId, Long itemId) {
         LOGGER.info("calling getCategoryItem from CategoryService");
         Optional<Category> category = categoryRepository.findById(categoryId);
         Optional<Item> item = itemRepository.findByCategoryId(
                 categoryId).stream().filter(p -> p.getId().equals(itemId)).findFirst();
-        if (category.isPresent() && item.isPresent() ) {
+        if (category.isPresent() && item.isPresent()) {
             return item.get();
-        }
-        else throw new InformationNotFoundException("item with id " + itemId +
-                    " does not exist" + " Or category with id" + categoryId + " doesn't exist or both");
+        } else throw new InformationNotFoundException("item with id " + itemId +
+                " does not exist" + " Or category with id" + categoryId + " doesn't exist or both");
 
 
     }
 
+    //Updating an item object with item and category id
     public Item updateCategoryItem(Long categoryId, Long itemId, Item itemObject) {
 
         Optional<Category> category = categoryRepository.findById(categoryId);
@@ -149,6 +150,7 @@ public class CategoryService {
         return itemRepository.save(item.get());
     }
 
+    //Deleting an item with item and category id
     public Item deleteCategoryItem(Long categoryId, Long itemId) {
 
         Optional<Category> category = categoryRepository.findById(categoryId);
@@ -161,12 +163,11 @@ public class CategoryService {
             if (!item.isPresent()) {
                 throw new InformationNotFoundException("item with id " + itemId +
                         "does not exist");
-            }
-            else
+            } else
                 itemRepository.deleteById(item.get().getId());
 
 
-           return null;
+            return null;
         }
 
 

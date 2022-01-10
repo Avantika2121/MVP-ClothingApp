@@ -17,11 +17,12 @@ import java.util.List;
 public class CategoryController {
 
 
-   private CategoryService categoryService;
-   @Autowired
-   public void setCategoryService(CategoryService categoryService) {
-       this.categoryService = categoryService;
-   }
+    private CategoryService categoryService;
+
+    @Autowired
+    public void setCategoryService(CategoryService categoryService) {
+        this.categoryService = categoryService;
+    }
 
     @GetMapping("/categories")
     public List<Category> getCategories() {
@@ -76,8 +77,8 @@ public class CategoryController {
 
     @PutMapping("/categories/{categoryId}/items/{itemId}")
     public Item updateCategoryItem(@PathVariable(value = "categoryId") Long categoryId,
-                                       @PathVariable(value = "itemId") Long itemId,
-                                       @RequestBody Item itemObject) {
+                                   @PathVariable(value = "itemId") Long itemId,
+                                   @RequestBody Item itemObject) {
         System.out.println("calling getCategoryItem ==>");
         return categoryService.updateCategoryItem(categoryId, itemId, itemObject);
     }
@@ -86,7 +87,7 @@ public class CategoryController {
     public Item deleteCategoryItem(
             @PathVariable(value = "categoryId") Long categoryId, @PathVariable(value = "itemId") Long itemId) {
         System.out.println("calling deleteCategoryItem ==>");
-        return categoryService.deleteCategoryItem(categoryId,itemId);
+        return categoryService.deleteCategoryItem(categoryId, itemId);
     }
 
 }
